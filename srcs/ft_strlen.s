@@ -9,7 +9,7 @@ ft_strlen: 						;ft_strlen(const char *s)
 	mov 		rbp, rsp		;met dans rbp l'adresse de retour stockee dans rsp
 
 	;recuperation de l'argument
-	mov			rbx, rax		;met dans rbx la valeur du premier argument
+	mov			rbx, rdi		;met dans rbx la valeur du premier argument
 
 	;initialisation de mon compteur
 	mov			rax, 0x0
