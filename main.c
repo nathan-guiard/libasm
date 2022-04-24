@@ -1,10 +1,14 @@
 #include "include/libasm.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 int main()
 {
 	int i;
-	char *str = "bonjour!\n";
+	char	*dest = strdup("aaaaaaaaaaaa");
+	char	*src = NULL;
 
-	printf("%d\n", ft_strlen(str));
+	ft_strcpy(dest, src);
+	printf("%s\n", dest);
 }
