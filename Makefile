@@ -6,12 +6,13 @@
 #    By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/21 09:02:04 by nguiard           #+#    #+#              #
-#    Updated: 2022/04/21 13:44:27 by nguiard          ###   ########.fr        #
+#    Updated: 2022/05/05 10:31:51 by nguiard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC = srcs/ft_strlen.s	\
 	srcs/ft_strcpy.s	\
+	srcs/ft_strcmp.s	\
 
 OBJ = ${SRC:.s=.o}
 

@@ -6,9 +6,9 @@
 int main()
 {
 	int i;
-	char	*dest = strdup("aaaaaaaaaaaa");
-	char	*src = NULL;
+	char	*dest = strdup("aaa");
+	char	*src = strdup("aaa");
 
-	ft_strcpy(dest, src);
-	printf("%s\n", dest);
+	i = ft_strcmp(dest, src);
+	printf("%d\n", i);
 }

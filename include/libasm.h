@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 09:12:39 by nguiard           #+#    #+#             */
-/*   Updated: 2022/04/21 13:42:15 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/05/05 10:31:27 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,6 @@
 
 int		ft_strlen(const char *s);
 char	*ft_strcpy(char *dest, const char *src);
+int		ft_strcmp(char *s1, char *s2);
 
 #endif
