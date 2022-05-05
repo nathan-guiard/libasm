@@ -19,13 +19,9 @@ loop:
 	inc			rbx				;dst++
 	inc			rcx				;src++
 	cmp			byte dl, 0x0	;if (rdx != 0)
-	jne			loop			;refare la boocule
+	jne			loop			;refare la boucle
 
 	;epilogue
 	mov			rsp, rbp		;remet la valeure stockee dans rbp dans rsp (voir prologue)
 	pop			rbp				;reprend la valeur stockee dans la stack et la met dans rbp
 	ret							;return a la suite du programme
-	
-
-
-

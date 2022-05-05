@@ -5,10 +5,5 @@
 
 int main()
 {
-	int i;
-	char	*dest = strdup("aaa");
-	char	*src = strdup("aaa");
-
-	i = ft_strcmp(dest, src);
-	printf("%d\n", i);
+	printf ("|\n\n%ld", ft_write(-1, "Hello world!\n", 13));
 }
