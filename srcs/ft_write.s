@@ -17,7 +17,7 @@ ft_write:
 
 error:
 	push		rax				;save la valeur de retour de write
-	call		__errno_location;rax = &errno
+	call	__errno_location	;rax = &errno
 	pop			rbx				;retrouve la valeur de retour de write
 	neg			rbx				;rbx *= -1
 	mov			[rax], rbx		;errno = rbx
