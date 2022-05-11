@@ -6,6 +6,8 @@
 
 int main()
 {
-	printf ("\n\n%ld\n", ft_write(0, "Hello world!\n", 13));
-	printf("|%d|", errno);
+	char str[10];
+
+	int ret = ft_read(0, str, 10);
+	printf("%s\n%d", str, ret);
 }
