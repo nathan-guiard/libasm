@@ -6,7 +6,7 @@
 #    By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/21 09:02:04 by nguiard           #+#    #+#              #
-#    Updated: 2023/04/24 18:07:07 by nguiard          ###   ########.fr        #
+#    Updated: 2023/04/24 18:24:52 by nguiard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ SRC = srcs/ft_strlen.s	\
 	srcs/ft_strcmp.s	\
 	srcs/ft_write.s		\
 	srcs/ft_read.s		\
+	srcs/ft_strdup.s	\
 
 OBJ = ${SRC:.s=.o}
 

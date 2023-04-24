@@ -13,6 +13,7 @@
 #define TESTS_STRCMP 6
 #define TESTS_WRITE 6
 #define TESTS_READ 6
+#define TESTS_STRDUP 4
 
 int dont_print_logs = 1;
 
@@ -21,6 +22,7 @@ int tests_strcpy();
 int tests_strcmp();
 int tests_write();
 int tests_read();
+int tests_strdup();
 
 int main(int argc, char **argv) {
 	if (argc ==  2 && strncmp("unit", argv[1], 4) == 0) {
@@ -55,6 +57,12 @@ int main(int argc, char **argv) {
 		printf("Result read\t\t[\033[32m✓\033[0m]\n");
 	} else {
 		printf("Result read\t\t[\033[31m✗\033[0m]\n");
+	}
+
+	if (tests_strdup()) {
+		printf("Result strdup\t\t[\033[32m✓\033[0m]\n");
+	} else {
+		printf("Result strdup\t\t[\033[31m✗\033[0m]\n");
 	}
 }
 
@@ -339,6 +347,8 @@ int tests_read() {
 	bzero(vrai, 100);
 	bzero(mine, 100);
 
+	PRINTF("\033[1;3;32m--- Tests read ---\033[0m\n\n");
+
 	vrai_ret = read(fd_vrai, vrai, 4);
 	mine_ret = read(fd_mine, mine, 4);
 
@@ -394,7 +404,26 @@ int tests_read() {
 	PRINTF("%s\t%d errno: %d\n%s\t%d errno: %d\n\n", vrai, vrai_ret, vrai_errno,
 													mine, mine_ret, mine_errno);
 
+	close(fd_mine);
+	close(fd_vrai);
+
 	return (equals == TESTS_READ);
 }
 
+int tests_strdup() {
+	char *vrai, *mine;
+	char str[100] = "Salut";
+	int equals = 0;
 
+	PRINTF("\033[1;3;32m--- Tests strdup ---\033[0m\n\n");
+
+
+	vrai = strdup(str);
+	mine = ft_strdup(str);
+
+	equals = !strcmp(vrai, mine);
+
+	PRINTF("%s\n%s", vrai, mine);
+
+	return (equals == TESTS_STRDUP);
+}
