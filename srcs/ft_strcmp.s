@@ -13,12 +13,10 @@ ft_strcmp:
 
 	xor			rax, rax
 
-	mov 		al, [rbx]
-	mov 		ah, [rcx]
-
-	cmp			rax, 0
+	mov 		al, [rbx]		;soit ABCD 16 octects, je met s1[0] dans CD
+	mov 		ah, [rcx]		;	et s2[0] dans AB. si ABCD est 0 alors les
+	cmp			rax, 0			;	deux strings sont vides
 	je			end
-
 
 loop:
 	xor			rax, rax		;rax = 0
