@@ -13,11 +13,18 @@ ft_strcmp:
 
 	xor			rax, rax
 
+	mov 		al, [rbx]
+	mov 		ah, [rcx]
+
+	cmp			rax, 0
+	je			end
+
+
 loop:
 	xor			rax, rax		;rax = 0
 	xor			rdx, rdx		;rdx = 0
-	mov			al, [rbx]		;rax = *s1
-	mov			dl, [rcx]		;rdx = *s2
+	mov			al, [rbx]		;al = *s1
+	mov			dl, [rcx]		;dl = *s2
 	sub			rax, rdx		;rax -= rdx (*s1 -= *s2)
 	inc			rbx				;s1++
 	inc			rcx				;s2++
@@ -27,12 +34,14 @@ loop:
 	je			end_cmp
 	cmp			byte al, 0x0	;si les deux sont egales: on continue
 	je			loop
-	jmp			end			;sinon on fini
+	jmp			end				;sinon on fini
 
 end_cmp:
-	mov			rax, [rbx]		;substraction finale
-	and			rax, 0x000000ff	;	
-	sub			rax, [rcx]		;
+	xor			rax, rax		;rax = 0
+	xor			rdx, rdx		;rdx = 0
+	mov			al, [rbx]		;substraction finale
+	mov			dl, [rcx]
+	sub			rax, rdx
 	jmp			end
 
 end:

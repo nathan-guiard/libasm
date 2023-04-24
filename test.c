@@ -7,7 +7,7 @@
 
 #define TESTS_STRLEN 6
 #define TESTS_STRCPY 5
-#define TESTS_STRCMP 5
+#define TESTS_STRCMP 6
 
 int dont_print_logs = 1;
 
@@ -231,6 +231,15 @@ int tests_strcmp() {
 
 	PRINTF("[%s | %s]\nstrcmp:\t\t%d\nft_strcmp:\t%d\n\n", s1, s2, vrai, mine);
 
+	strcpy(s2, "");
+	strcpy(s1, "salut");
+
+	vrai = strcmp(s1, s2);
+	mine = ft_strcmp(s1, s2);
+
+	equals += vrai == mine;
+
+	PRINTF("[%s | %s]\nstrcmp:\t\t%d\nft_strcmp:\t%d\n\n", s1, s2, vrai, mine);
 
 	strcpy(s2, "saaaaaa");
 	strcpy(s1, "salut");
