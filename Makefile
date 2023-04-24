@@ -6,7 +6,7 @@
 #    By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/21 09:02:04 by nguiard           #+#    #+#              #
-#    Updated: 2023/04/24 16:44:20 by nguiard          ###   ########.fr        #
+#    Updated: 2023/04/24 17:12:26 by nguiard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,8 @@ OBJ = ${SRC:.s=.o}
 
 NAME = libasm.a
 
+NAME_TEST = test.out
+
 .s.o:
 	nasm -f elf64 $< -o ${<:.s=.o}
 
@@ -31,15 +33,15 @@ clean:
 	rm -rf ${OBJ}
 
 fclean:
-	rm -rf ${OBJ} ${NAME}
+	rm -rf ${OBJ} ${NAME} ${NAME_TEST}
 
 test: ${NAME}
-	@gcc -g3 test.c ${NAME} -o test.out
-	@./test.out
+	@gcc -g3 test.c ${NAME} -o ${NAME_TEST}
+	@./${NAME_TEST}
 
 unit: ${NAME}
-	@gcc -g3 test.c ${NAME} -o test.out
-	@./test.out unit
+	@gcc -g3 test.c ${NAME} -o ${NAME_TEST}
+	@./${NAME_TEST} unit
 
 re: fclean ${NAME}
 
