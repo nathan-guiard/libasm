@@ -21,9 +21,11 @@ ft_strdup:
 	jmp			copy				;else copy()
 
 copy:
-	mov			rdi, rbx		;rdi = rbx(src)
-	mov			rsi, rax		;rsi = rax(return malloc)
+	mov			rsi, rbx		;rdi = rbx(src)
+	mov			rdi, rax		;rsi = rax(return malloc)
+	mov			rcx, rax		;rcx = rax(return malloc)
 	call		ft_strcpy
+	mov			rax, rcx		;rcx == return value
 	jmp			end_strdup
 
 end_strdup:

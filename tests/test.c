@@ -410,7 +410,7 @@ int tests_read() {
 }
 
 int tests_strdup() {
-	char *vrai, *mine;
+	char *vrai = NULL, *mine = NULL;
 	char str[100] = "Salut";
 	int equals = 0;
 
@@ -422,7 +422,9 @@ int tests_strdup() {
 
 	equals = !strcmp(vrai, mine);
 
-	PRINTF("%s\n%s", vrai, mine);
+	PRINTF("%p\n%p", vrai, mine);
 
+	free(vrai);
+	free(mine);
 	return (equals == TESTS_STRDUP);
 }
