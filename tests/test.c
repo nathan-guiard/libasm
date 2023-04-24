@@ -422,7 +422,8 @@ int tests_strdup() {
 
 	equals = !strcmp(vrai, mine);
 
-	PRINTF("%p\n%p", vrai, mine);
+	PRINTF("%p\n%p\n", vrai, mine);
+	PRINTF("%s\n%s\n", vrai, mine);
 
 	free(vrai);
 	free(mine);
