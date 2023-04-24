@@ -2,18 +2,21 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #define PRINTF(...) dont_print_logs ? printf(__VA_ARGS__) : 0 == 0
 
 #define TESTS_STRLEN 6
 #define TESTS_STRCPY 5
 #define TESTS_STRCMP 6
+#define TESTS_WRITE 6
 
 int dont_print_logs = 1;
 
 int tests_strlen();
 int tests_strcpy();
 int tests_strcmp();
+int tests_write();
 
 int main(int argc, char **argv) {
 	if (argc ==  2 && strncmp("unit", argv[1], 4) == 0) {
@@ -36,6 +39,12 @@ int main(int argc, char **argv) {
 		printf("Result strcmp\t\t[\033[32m✓\033[0m]\n");
 	} else {
 		printf("Result strcmp\t\t[\033[31m✗\033[0m]\n");
+	}
+
+	if (tests_write()) {
+		printf("Result write\t\t[\033[32m✓\033[0m]\n");
+	} else {
+		printf("Result write\t\t[\033[31m✗\033[0m]\n");
 	}
 }
 
@@ -253,5 +262,60 @@ int tests_strcmp() {
 	return (equals == TESTS_STRCMP);
 }
 
+int tests_write() {
+	char str[10] = "salut\0\0\0\0";
+	int vrai, mine;
+	int equals = 0;
+
+	PRINTF("\033[1;3;32m--- Tests write ---\033[0m\n\n");
+
+	vrai = write(1, str, 5);
+	PRINTF("\t%d\n", vrai);
+	mine = ft_write(1, str, 5);
+	PRINTF("\t%d\n\n", mine);
+
+	equals += vrai == mine;
+
+	vrai = write(1, str, 10);
+	PRINTF("\t%d\n", vrai);
+	mine = ft_write(1, str, 10);
+	PRINTF("\t%d\n\n", mine);
+
+	equals += vrai == mine;
+
+	vrai = write(1, str, 0);
+	PRINTF("\t%d\n", vrai);
+	mine = ft_write(1, str, 0);
+	PRINTF("\t%d\n\n", mine);
+
+	equals += vrai == mine;
+
+	bzero(str, 10);
+
+	vrai = write(1, str, 7);
+	PRINTF("\t%d\n", vrai);
+	mine = ft_write(1, str, 7);
+	PRINTF("\t%d\n\n", mine);
+
+	equals += vrai == mine;
+
+	strcpy(str, "bonjour");
+
+	vrai = write(0, str, 7);
+	PRINTF("\t%d\n", vrai);
+	mine = ft_write(0, str, 7);
+	PRINTF("\t%d\n\n", mine);
+
+	equals += vrai == mine;
+
+	vrai = write(7, str, 7);
+	PRINTF("\t%d\n", vrai);
+	mine = ft_write(7, str, 7);
+	PRINTF("\t%d\n\n", mine);
+
+	equals += vrai == mine;
+
+	return (equals == TESTS_WRITE);
+}
 
 
