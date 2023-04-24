@@ -6,7 +6,7 @@
 #    By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/21 09:02:04 by nguiard           #+#    #+#              #
-#    Updated: 2023/04/24 18:24:52 by nguiard          ###   ########.fr        #
+#    Updated: 2023/04/24 20:35:58 by nguiard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ test: ${NAME}
 
 unit: ${NAME}
 	@gcc -Wall -Werror -Wextra -g3 tests/test.c ${NAME} -o ${NAME_TEST}
-	@./${NAME_TEST} unit
+	@./${NAME_TEST} unit 2>/dev/null 0>/dev/null
 
 re: fclean ${NAME}
 

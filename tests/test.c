@@ -287,32 +287,32 @@ int tests_write() {
 
 	PRINTF("\033[1;3;32m--- Tests write ---\033[0m\n\n");
 
-	vrai = write(1, str, 5);
+	vrai = write(2, str, 5);
 	PRINTF("\t%d\n", vrai);
-	mine = ft_write(1, str, 5);
+	mine = ft_write(2, str, 5);
 	PRINTF("\t%d\n\n", mine);
 
 	equals += vrai == mine;
 
-	vrai = write(1, str, 10);
+	vrai = write(2, str, 10);
 	PRINTF("\t%d\n", vrai);
-	mine = ft_write(1, str, 10);
+	mine = ft_write(2, str, 10);
 	PRINTF("\t%d\n\n", mine);
 
 	equals += vrai == mine;
 
-	vrai = write(1, str, 0);
+	vrai = write(2, str, 0);
 	PRINTF("\t%d\n", vrai);
-	mine = ft_write(1, str, 0);
+	mine = ft_write(2, str, 0);
 	PRINTF("\t%d\n\n", mine);
 
 	equals += vrai == mine;
 
 	bzero(str, 10);
 
-	vrai = write(1, str, 7);
+	vrai = write(2, str, 7);
 	PRINTF("\t%d\n", vrai);
-	mine = ft_write(1, str, 7);
+	mine = ft_write(2, str, 7);
 	PRINTF("\t%d\n\n", mine);
 
 	equals += vrai == mine;
@@ -399,10 +399,9 @@ int tests_read() {
 	mine_ret = read(42, mine, 42);
 	int mine_errno = errno;
 
-	equals += (vrai_ret == mine_ret && !strcmp(vrai, mine));
+	equals += (vrai_ret == mine_ret && (vrai_errno == mine_errno));
 
-	PRINTF("%s\t%d errno: %d\n%s\t%d errno: %d\n\n", vrai, vrai_ret, vrai_errno,
-													mine, mine_ret, mine_errno);
+	PRINTF("%d errno: %d\n%d errno: %d\n\n", vrai_ret, vrai_errno, mine_ret, mine_errno);
 
 	close(fd_mine);
 	close(fd_vrai);
