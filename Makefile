@@ -6,7 +6,7 @@
 #    By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/21 09:02:04 by nguiard           #+#    #+#              #
-#    Updated: 2023/04/24 17:12:26 by nguiard          ###   ########.fr        #
+#    Updated: 2023/04/24 18:07:07 by nguiard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,11 +36,11 @@ fclean:
 	rm -rf ${OBJ} ${NAME} ${NAME_TEST}
 
 test: ${NAME}
-	@gcc -g3 test.c ${NAME} -o ${NAME_TEST}
+	@gcc -Wall -Werror -Wextra -g3 tests/test.c ${NAME} -o ${NAME_TEST}
 	@./${NAME_TEST}
 
 unit: ${NAME}
-	@gcc -g3 test.c ${NAME} -o ${NAME_TEST}
+	@gcc -Wall -Werror -Wextra -g3 tests/test.c ${NAME} -o ${NAME_TEST}
 	@./${NAME_TEST} unit
 
 re: fclean ${NAME}
