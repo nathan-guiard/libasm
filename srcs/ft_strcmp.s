@@ -11,26 +11,28 @@ ft_strcmp:
 	mov			rbx, rdi		;met s1 dans rbx
 	mov			rcx, rsi		;met s2 dans rcx
 
-	mov			rax, 0
+	xor			rax, rax
 
 loop:
-	mov			rax, [rbx]		;rax = *s1
-	and			rax, 0x000000ff	;petite manip pour garder que le premier octet
-	sub			al, [rcx]		;rax -= *s2
-	inc			rbx				;*s1++
-	inc			rcx				;*s2++
+	xor			rax, rax		;rax = 0
+	xor			rdx, rdx		;rdx = 0
+	mov			al, [rbx]		;rax = *s1
+	mov			dl, [rcx]		;rdx = *s2
+	sub			rax, rdx		;rax -= rdx (*s1 -= *s2)
+	inc			rbx				;s1++
+	inc			rcx				;s2++
 	cmp			byte [rbx], 0x0	;stop si une des strings est finie
 	je			end_cmp
 	cmp			byte [rcx], 0x0
 	je			end_cmp
 	cmp			byte al, 0x0	;si les deux sont egales: on continue
 	je			loop
-	jmp			end				;sinon on fini
+	jmp			end			;sinon on fini
 
 end_cmp:
-	mov			rax, [rbx]		;fais un dernier check si les strings ont
-	and			rax, 0x000000ff	;	pas la meme taille
-	sub			rax, [rcx]
+	mov			rax, [rbx]		;substraction finale
+	and			rax, 0x000000ff	;	
+	sub			rax, [rcx]		;
 	jmp			end
 
 end:

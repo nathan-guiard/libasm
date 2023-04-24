@@ -240,7 +240,7 @@ int tests_strcmp() {
 
 	equals += vrai == mine;
 
-	PRINTF("[%s | %s]\nstrcmp:\t\t%d\nft_strcmp:\t%d\n\n", s1, s2, vrai, mine);
+	PRINTF("[%s | %s]\nstrcmp:\t\t%d\nft_strcmp:\t%d\n", s1, s2, vrai, mine);
 	return (equals == TESTS_STRCMP);
 }
 

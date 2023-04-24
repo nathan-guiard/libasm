@@ -6,7 +6,7 @@
 #    By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/21 09:02:04 by nguiard           #+#    #+#              #
-#    Updated: 2023/04/24 14:01:47 by nguiard          ###   ########.fr        #
+#    Updated: 2023/04/24 16:44:20 by nguiard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,4 +43,4 @@ unit: ${NAME}
 
 re: fclean ${NAME}
 
-.PHONY: re fclean clean all
+.PHONY: re fclean clean all test unit
