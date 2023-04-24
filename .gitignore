@@ -3,3 +3,5 @@ main
 libasm.a
 *.out
 */*.o
+.vscode
+.vscode/*
