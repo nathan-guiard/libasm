@@ -17,18 +17,18 @@ ft_strdup:
 	mov			rdi, rax			;rdi = rax
 	call		malloc wrt ..plt	;rax = malloc(rdi)
 	cmp			rax, 0x0			;if (!rax)
-	je			end_strdup			; end_strdup()
-	jmp			copy				;else copy()
+	je			.end_strdup			; end_strdup()
+	jmp			.copy_strdup		;else .copy_strdup()
 
-copy:
+.copy_strdup:
 	pop			rsi				;on reprend rdi pour le mettre dans rdx (l 16)
 	mov			rdi, rax		;rsi = rax(return malloc)
 	push		rax				;push return malloc
 	call		ft_strcpy
 	pop			rax				;pop return malloc pour la return value
-	jmp			end_strdup
+	jmp			.end_strdup
 
-end_strdup:
+.end_strdup:
 	;epilogue
 	mov			rsp, rbp		;remet la valeure stockee dans rbp dans rsp (voir prologue)
 	pop			rbp				;reprend la valeur stockee dans la stack et la met dans rbp

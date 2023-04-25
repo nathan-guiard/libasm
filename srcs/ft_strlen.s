@@ -16,20 +16,20 @@ ft_strlen: 						;ft_strlen(const char *s)
 
 	;check si le pointeur n'est pas nul
 	cmp			rbx, 0			;compare rbx avec 0
-	je			end_prog		;si les deux sont egaux, jump a end
+	je			.end_strlen		;si les deux sont egaux, jump a end
 
-loop:
+.loop_strlen:
 	;verification de la condition
 	cmp	byte	[rbx], 0x0		;compare le premier bit de la valeur pointee par rbx
-	je 			end_prog
+	je 			.end_strlen
 
 	;loop
 	inc			rax
 	inc			rbx
-	jmp			loop
+	jmp			.loop_strlen
 
 
-end_prog:
+.end_strlen:
 	;epilogue
 	mov			rsp, rbp		;remet la valeure stockee dans rbp dans rsp (voir prologue)
 	pop			rbp				;reprend la valeur stockee dans la stack et la met dans rbp

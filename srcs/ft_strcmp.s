@@ -16,9 +16,9 @@ ft_strcmp:
 	mov 		al, [rbx]		;soit ABCD 16 octects, je met s1[0] dans CD
 	mov 		ah, [rcx]		;	et s2[0] dans AB. si ABCD est 0 alors les
 	cmp			rax, 0			;	deux strings sont vides
-	je			end
+	je			.end_strcmp
 
-loop:
+.loop_strcmp:
 	xor			rax, rax		;rax = 0
 	xor			rdx, rdx		;rdx = 0
 	mov			al, [rbx]		;al = *s1
@@ -27,22 +27,22 @@ loop:
 	inc			rbx				;s1++
 	inc			rcx				;s2++
 	cmp			byte [rbx], 0x0	;stop si une des strings est finie
-	je			end_cmp
+	je			.last_compare_strcmp
 	cmp			byte [rcx], 0x0
-	je			end_cmp
+	je			.last_compare_strcmp
 	cmp			byte al, 0x0	;si les deux sont egales: on continue
-	je			loop
-	jmp			end				;sinon on fini
+	je			.loop_strcmp
+	jmp			.end_strcmp				;sinon on fini
 
-end_cmp:
+.last_compare_strcmp:
 	xor			rax, rax		;rax = 0
 	xor			rdx, rdx		;rdx = 0
 	mov			al, [rbx]		;substraction finale
 	mov			dl, [rcx]
 	sub			rax, rdx
-	jmp			end
+	jmp			.end_strcmp
 
-end:
+.end_strcmp:
 	;epilogue
 	mov			rsp, rbp		;remet la valeure stockee dans rbp dans rsp (voir prologue)
 	pop			rbp				;reprend la valeur stockee dans la stack et la met dans rbp
