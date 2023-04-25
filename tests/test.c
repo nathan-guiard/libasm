@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <errno.h>
+#include <malloc.h>
 
 #define PRINTF(...) dont_print_logs ? printf(__VA_ARGS__) : 0 == 0
 
@@ -411,6 +412,7 @@ int tests_read() {
 
 int tests_strdup() {
 	char *vrai = NULL, *mine = NULL;
+	int vrai_size, mine_size;
 	char str[100] = "Salut";
 	int equals = 0;
 
@@ -419,11 +421,54 @@ int tests_strdup() {
 
 	vrai = strdup(str);
 	mine = ft_strdup(str);
+	vrai_size = malloc_usable_size(vrai);
+	mine_size = malloc_usable_size(mine);
 
-	equals = !strcmp(vrai, mine);
+	equals += !strcmp(vrai, mine) && vrai_size == mine_size;
 
-	PRINTF("%p\n%p\n", vrai, mine);
-	PRINTF("%s\n%s\n", vrai, mine);
+	PRINTF("%s\t%d\n%s\t%d\n", vrai, vrai_size, mine, mine_size);
+
+	free(vrai);
+	free(mine);
+
+	bzero(str, 100);
+
+	vrai = strdup(str);
+	mine = ft_strdup(str);
+	vrai_size = malloc_usable_size(vrai);
+	mine_size = malloc_usable_size(mine);
+
+	equals += !strcmp(vrai, mine) && vrai_size == mine_size;
+
+	PRINTF("%s\t%d\n%s\t%d\n", vrai, vrai_size, mine, mine_size);
+
+	free(vrai);
+	free(mine);
+
+	strcpy(str, "bonjour\0je suis chache");
+
+	vrai = strdup(str);
+	mine = ft_strdup(str);
+	vrai_size = malloc_usable_size(vrai);
+	mine_size = malloc_usable_size(mine);
+
+	equals += !strcmp(vrai, mine) && vrai_size == mine_size;
+
+	PRINTF("%s\t%d\n%s\t%d\n", vrai, vrai_size, mine, mine_size);
+
+	free(vrai);
+	free(mine);
+
+	strcpy(str, "Une phrase plus longue bla bla bla je ne sais pas si j'aime les artichauds");
+
+	vrai = strdup(str);
+	mine = ft_strdup(str);
+	vrai_size = malloc_usable_size(vrai);
+	mine_size = malloc_usable_size(mine);
+
+	equals += !strcmp(vrai, mine) && vrai_size == mine_size;
+
+	PRINTF("%s\t%d\n%s\t%d\n", vrai, vrai_size, mine, mine_size);
 
 	free(vrai);
 	free(mine);
