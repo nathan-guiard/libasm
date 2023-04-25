@@ -13,7 +13,7 @@ ft_strdup:
 
 	call		ft_strlen			;rax = strlen(src)
 	inc			rax					;rax++
-	mov			rbx, rdi			;rbx = src
+	push		rdi					;rdi au top de la stack
 	mov			rdi, rax			;rdi = rax
 	call		malloc wrt ..plt	;rax = malloc(rdi)
 	cmp			rax, 0x0			;if (!rax)
@@ -21,11 +21,11 @@ ft_strdup:
 	jmp			copy				;else copy()
 
 copy:
-	mov			rsi, rbx		;rdi = rbx(src)
+	pop			rsi				;on reprend rdi pour le mettre dans rdx (l 16)
 	mov			rdi, rax		;rsi = rax(return malloc)
-	mov			rcx, rax		;rcx = rax(return malloc)
+	push		rax				;push return malloc
 	call		ft_strcpy
-	mov			rax, rcx		;rcx == return value
+	pop			rax				;pop return malloc pour la return value
 	jmp			end_strdup
 
 end_strdup:
