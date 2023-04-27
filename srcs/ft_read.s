@@ -9,7 +9,7 @@ ft_read:
 	push 		rbp				;save le content de rbp en le mettant dans la stack
 	mov 		rbp, rsp		;met dans rbp l'adresse de retour stockee dans rsp
 
-	mov			rax, 2			;appel du syscall read
+	mov			rax, 0			;appel du syscall read
 	syscall
 
 	cmp			rax, 0			;si le retour de read est negatif
